@@ -1,4 +1,10 @@
-from AirVehicle import *
+from AirVehicle.Airplanes import *
+from AirVehicle.Helicopters import *
+from AirVehicle.Drones import *
+from AirVehicle.Airships import *
+from AirVehicle.Aeroport import *
+
+
 
 # Создание экземпляров каждого типа транспортных средств
 aerobus = Airplanes('Аэробус', 100, 'Гражданские перелёты',5000, 'Керосин', 300)     # объект самолёта
@@ -8,34 +14,26 @@ helicopter = Helicopters('Aligator', 8, 'Военные операции', 3000,
 drone = Drones('H-Aero', 1, 'Разведка местности', 0.5, 'Электропривод')                         # объект дрона
 dirigible = Airships('Airlander', 20, 'Рекламные акции', 4000, 'Электропривод')                 # объект дирижабля
 
+# Массив воздушных судов
+vehicles = {'Аэробус': aerobus, 'Jet': jet_aircraft, 'Ми-8': mi_8, 'Aligator': helicopter, 'H-Aero': drone, 'Airlander': dirigible}
 
-# Выводы информации обо всех объектах
-print(aerobus.info())
-print(mi_8.info())
-print(jet_aircraft.info())
-print(helicopter.info())
-print(drone.info())
-print(dirigible.info())
-print('========================')
-print(aerobus.refuel())
-print(aerobus.wait_for_landing())
-print(aerobus.fly_away())
-print(aerobus.land())
-print(mi_8.refuel())
-print(mi_8.wait_for_landing())
-print(mi_8.fly_away())
-print(mi_8.land())
-print(jet_aircraft.refuel())
-print(jet_aircraft.wait_for_landing())
-print(jet_aircraft.fly_away())
-print(jet_aircraft.land())
-print(helicopter.refuel())
-print(helicopter.wait_for_landing())
-print(helicopter.fly_away())
-print(helicopter.land())
-print(drone.refuel())
-print(drone.fly_away())
-print(drone.land())
-print(dirigible.refuel())
-print(dirigible.fly_away())
-print(dirigible.land())
+# Создание экземпляра класса Aeroport
+aeroport = Aeroport(10000, vehicles)
+
+print('Время 08:00')
+print(f"{aeroport.vehicles['Airlander'].name} {aeroport.vehicles['Airlander'].refuel()}")
+print(f"{aeroport.vehicles['Airlander'].name} {aeroport.vehicles['Airlander'].fly_away()}")
+print('Время 09:00')
+print(f"{aeroport.vehicles['Aligator'].name} {aeroport.vehicles['Aligator'].land()}")
+print(f"{aeroport.vehicles['Aligator'].name} {aeroport.vehicles['Aligator'].wait_for_landing()}")
+print(f"{aeroport.vehicles['Aligator'].name} {aeroport.vehicles['Aligator'].fly_away()}")
+print('Время 12:00')
+print(f"{aeroport.vehicles['Аэробус'].name} {aeroport.vehicles['Аэробус'].refuel()}")
+print(f"{aeroport.vehicles['Аэробус'].name} {aeroport.vehicles['Аэробус'].wait_for_landing()}")
+print(f"{aeroport.vehicles['Аэробус'].name} {aeroport.vehicles['Аэробус'].fly_away()}")
+print('Время 18:00')
+print(f"{aeroport.vehicles['Aligator'].name} {aeroport.vehicles['Aligator'].land()}")
+print(f"{aeroport.vehicles['Aligator'].name} {aeroport.vehicles['Aligator'].refuel()}")
+print('Время 20:00')
+print(f"{aeroport.vehicles['Airlander'].name} {aeroport.vehicles['Airlander'].land()}")
+print(f"{aeroport.vehicles['Airlander'].name} {aeroport.vehicles['Airlander'].refuel()}")
